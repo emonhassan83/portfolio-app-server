@@ -1,0 +1,46 @@
+import express from 'express';
+import zodValidationRequest from '../../middleware/validateRequest';
+import { USER_ROLE } from '../user/user.constant';
+import auth from '../../middleware/auth';
+import { projectValidations } from './project.validation';
+import { projectControllers } from './project.controller';
+
+const router = express.Router();
+
+router.post(
+  '/add-project',
+  auth(USER_ROLE.admin),
+  zodValidationRequest(
+    projectValidations.createProjectValidationSchema,
+  ),
+  projectControllers.addProject,
+);
+
+router.put(
+  '/update-project/:id',
+  auth(USER_ROLE.admin),
+  zodValidationRequest(
+    projectValidations.updateProjectValidationSchema,
+  ),
+  projectControllers.updateAProject,
+);
+
+router.get(
+  '/all-projects',
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  projectControllers.getAllProjects,
+);
+
+router.get(
+  '/project/:id',
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  projectControllers.getAProject,
+);
+
+router.delete(
+  '/delete-project/:id',
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  projectControllers.deleteAProject,
+);
+
+export const ProjectRoutes = router;
