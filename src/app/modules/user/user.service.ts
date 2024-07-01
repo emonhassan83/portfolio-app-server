@@ -17,14 +17,14 @@ const registerUserIntoDB = async (payload: TUser) => {
     role: result.role,
   };
 
-  const token = createToken(
+  const accessToken = createToken(
     jwtPayload,
     config.jwt_access_secret as string,
     config.jwt_access_expires_in as string,
   );
 
   return {
-    token,
+    accessToken,
   };
 };
 

@@ -18,7 +18,7 @@ const createProjectValidationSchema = z.object({
       })
       .optional(),
     features: z
-      .number({
+      .string({
         required_error: 'Project features is required!',
       })
       .optional(),
@@ -61,7 +61,7 @@ const updateProjectValidationSchema = z.object({
     description: z.string({
       required_error: 'Project description is required!',
     }),
-    features: z.number({
+    features: z.string({
       required_error: 'Project features is required!',
     }),
     technologies: z.string({

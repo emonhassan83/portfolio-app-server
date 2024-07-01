@@ -27,13 +27,11 @@ router.put(
 
 router.get(
   '/all-projects',
-  auth(USER_ROLE.admin, USER_ROLE.user),
   projectControllers.getAllProjects,
 );
 
 router.get(
-  '/project/:id',
-  auth(USER_ROLE.admin, USER_ROLE.user),
+  '/:id',
   projectControllers.getAProject,
 );
 
