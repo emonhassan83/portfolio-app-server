@@ -5,8 +5,7 @@ const createQualificationValidationSchema = z.object({
     name: z
       .string({
         required_error: 'Qualification name is required!',
-      })
-      .optional(),
+      }),
     designation: z.string({
       required_error: 'Qualification designation is required!',
     }),

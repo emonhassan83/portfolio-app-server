@@ -8,26 +8,26 @@ import { skillControllers } from './skills.controller';
 const router = express.Router();
 
 router.post(
-  '/add-project',
+  '/add-skill',
   auth(USER_ROLE.admin),
   zodValidationRequest(skillValidations.createSkillValidationSchema),
   skillControllers.addSkill,
 );
 
 router.put(
-  '/update-project/:id',
+  '/update-skill/:id',
   auth(USER_ROLE.admin),
   zodValidationRequest(skillValidations.updateSkillValidationSchema),
   skillControllers.updateASkill,
 );
 
-router.get('/all-projects', skillControllers.getAllSkills);
+router.get('/all-skills', skillControllers.getAllSkills);
 
 router.get('/:id', skillControllers.getASkill);
 
 router.delete(
-  '/delete-project/:id',
-  auth(USER_ROLE.admin, USER_ROLE.user),
+  '/delete-skill/:id',
+  auth(USER_ROLE.admin),
   skillControllers.deleteASkill,
 );
 

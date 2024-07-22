@@ -8,26 +8,26 @@ import { qualificationControllers } from './qualification.controller';
 const router = express.Router();
 
 router.post(
-  '/add-project',
+  '/add-qualification',
   auth(USER_ROLE.admin),
   zodValidationRequest(QualificationValidations.createQualificationValidationSchema),
   qualificationControllers.addQualification,
 );
 
 router.put(
-  '/update-project/:id',
+  '/update-qualification/:id',
   auth(USER_ROLE.admin),
   zodValidationRequest(QualificationValidations.createQualificationValidationSchema),
   qualificationControllers.updateAQualification,
 );
 
-router.get('/all-projects', qualificationControllers.getAllQualifications);
+router.get('/all-qualifications', qualificationControllers.getAllQualifications);
 
 router.get('/:id', qualificationControllers.getAQualification);
 
 router.delete(
-  '/delete-project/:id',
-  auth(USER_ROLE.admin, USER_ROLE.user),
+  '/delete-qualification/:id',
+  auth(USER_ROLE.admin),
   qualificationControllers.deleteAQualification,
 );
 

@@ -4,13 +4,13 @@ import sendResponse from '../../utils/sendResponse';
 import { SkillServices } from './skills.service';
 
 const addSkill = catchAsync(async (req, res) => {
-  const project = await SkillServices.createIntoDB(req.body, req.user);
+  const skill = await SkillServices.createIntoDB(req.body, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'New skill added successfully!',
-    data: project,
+    data: skill,
   });
 });
 
@@ -40,25 +40,25 @@ const getASkill = catchAsync(async (req, res) => {
 
 const updateASkill = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const project = await SkillServices.updateIntoDB(id, req.body, req.user);
+  const skill = await SkillServices.updateIntoDB(id, req.body, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Update a skill successfully!',
-    data: project,
+    data: skill,
   });
 });
 
 const deleteASkill = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const project = await SkillServices.deleteAIntoDB(id, req.user);
+  const skill = await SkillServices.deleteAIntoDB(id, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Delete a skill successfully!',
-    data: project,
+    data: skill,
   });
 });
 

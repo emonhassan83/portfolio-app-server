@@ -5,8 +5,7 @@ const createSkillValidationSchema = z.object({
     name: z
       .string({
         required_error: 'Skill name is required!',
-      })
-      .optional(),
+      }),
     image: z
       .string({
         required_error: 'Skill image is required!',

@@ -15,13 +15,13 @@ const addBlog = catchAsync(async (req, res) => {
 });
 
 const publishBlog = catchAsync(async (req, res) => {
-  const project = await BlogServices.publishedBlog(req.body, req.user);
+  const blog = await BlogServices.publishedBlog(req.body, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'New blog published successfully!',
-    data: project,
+    data: blog,
   });
 });
 
@@ -39,37 +39,37 @@ const getAllBlogs = catchAsync(async (req, res) => {
 
 const getABlog = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const project = await BlogServices.getAIntoDB(id, req.user);
+  const blog = await BlogServices.getAIntoDB(id, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Blog retrieve successfully!',
-    data: project,
+    data: blog,
   });
 });
 
 const updateABlog = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const project = await BlogServices.updateIntoDB(id, req.body, req.user);
+  const blog = await BlogServices.updateIntoDB(id, req.body, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Update a blog successfully!',
-    data: project,
+    data: blog,
   });
 });
 
-const deleteAQBlog = catchAsync(async (req, res) => {
+const deleteABlog = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const project = await BlogServices.deleteAIntoDB(id, req.user);
+  const blog = await BlogServices.deleteAIntoDB(id, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Delete a blog successfully!',
-    data: project,
+    data: blog,
   });
 });
 
@@ -79,5 +79,5 @@ export const blogControllers = {
   getAllBlogs,
   getABlog,
   updateABlog,
-  deleteAQBlog,
+  deleteABlog,
 };

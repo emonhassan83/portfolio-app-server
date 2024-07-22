@@ -37,7 +37,7 @@ router.get(
 
 router.delete(
   '/delete-project/:id',
-  auth(USER_ROLE.admin, USER_ROLE.user),
+  auth(USER_ROLE.admin),
   projectControllers.deleteAProject,
 );
 

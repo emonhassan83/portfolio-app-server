@@ -7,6 +7,6 @@ export type TBlog = {
     images?: string[];
     tags: string[];
     author: Types.ObjectId;
-    isPublished: boolean;
+    isPublished?: boolean;
   };
   

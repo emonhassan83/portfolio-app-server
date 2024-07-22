@@ -8,7 +8,7 @@ import { BlogValidations } from './blogs.validation';
 const router = express.Router();
 
 router.post(
-  '/add-project',
+  '/add-blog',
   auth(USER_ROLE.admin),
   zodValidationRequest(BlogValidations.createBlogValidationSchema),
   blogControllers.addBlog,
@@ -21,20 +21,20 @@ router.put(
 );
 
 router.put(
-  '/update-project/:id',
+  '/update-blog/:id',
   auth(USER_ROLE.admin),
   zodValidationRequest(BlogValidations.updateBlogValidationSchema),
   blogControllers.updateABlog,
 );
 
-router.get('/all-projects', blogControllers.getAllBlogs);
+router.get('/all-blogs', blogControllers.getAllBlogs);
 
 router.get('/:id', blogControllers.getABlog);
 
 router.delete(
-  '/delete-project/:id',
+  '/delete-blog/:id',
   auth(USER_ROLE.admin, USER_ROLE.user),
-  blogControllers.deleteAQBlog,
+  blogControllers.deleteABlog,
 );
 
 export const BlogRoutes = router;

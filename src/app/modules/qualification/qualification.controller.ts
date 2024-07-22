@@ -4,13 +4,13 @@ import sendResponse from '../../utils/sendResponse';
 import { QualificationServices } from './qualification.service';
 
 const addQualification = catchAsync(async (req, res) => {
-  const project = await QualificationServices.createIntoDB(req.body, req.user);
+  const qualification = await QualificationServices.createIntoDB(req.body, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'New qualification added successfully!',
-    data: project,
+    data: qualification,
   });
 });
 
@@ -28,37 +28,37 @@ const getAllQualifications = catchAsync(async (req, res) => {
 
 const getAQualification = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const project = await QualificationServices.getAIntoDB(id, req.user);
+  const qualification = await QualificationServices.getAIntoDB(id, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Qualification retrieve successfully!',
-    data: project,
+    data: qualification,
   });
 });
 
 const updateAQualification = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const project = await QualificationServices.updateIntoDB(id, req.body, req.user);
+  const qualification = await QualificationServices.updateIntoDB(id, req.body, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Update a qualification successfully!',
-    data: project,
+    data: qualification,
   });
 });
 
 const deleteAQualification = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const project = await QualificationServices.deleteAIntoDB(id, req.user);
+  const qualification = await QualificationServices.deleteAIntoDB(id, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Delete a qualification successfully!',
-    data: project,
+    data: qualification,
   });
 });
 
