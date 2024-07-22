@@ -35,7 +35,7 @@ const userSchema = new Schema<TUser, UserModel>(
     role: {
       type: String,
       enum: UserRoleStatus,
-      default: "user"
+      default: 'user',
     },
     status: {
       type: String,
@@ -85,8 +85,8 @@ userSchema.statics.isUserExistsByUserEmail = async function (email: string) {
   return await User.findOne({ email });
 };
 
-userSchema.statics.isUserExistsByEmail = async function (email: string) {
-  return await User.findOne({ email });
+userSchema.statics.isUserExistsByUserId = async function (id: string) {
+  return await User.findOne({ _id: id });
 };
 
 userSchema.statics.isPasswordMatched = async function (
