@@ -31,4 +31,4 @@ router.delete(
   qualificationControllers.deleteAQualification,
 );
 
-export const SkillRoutes = router;
+export const QualificationRoutes = router;
