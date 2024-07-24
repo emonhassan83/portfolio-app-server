@@ -83,6 +83,31 @@ const getAllIntoDB = async (query: Record<string, unknown>) => {
   };
 };
 
+const getAllMyIntoDB = async (
+  query: Record<string, unknown>,
+  userData: JwtPayload,
+) => {
+  const user = await User.isUserExistsByUserEmail(userData.email);
+  if (!user) {
+    throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !');
+  }
+
+  const userId = user._id;
+  const blogQuery = new QueryBuilder(Blog.find({ author: userId }), query)
+    .search(BlogsSearchableFields)
+    .filter()
+    .sort()
+    .paginate()
+    .fields();
+
+  const result = await blogQuery.modelQuery;
+  const meta = await blogQuery.countTotal();
+  return {
+    meta,
+    result,
+  };
+};
+
 const getAIntoDB = async (id: string, userData: JwtPayload) => {
   const user = await User.isUserExistsByUserEmail(userData.email);
   if (!user) {
@@ -163,6 +188,7 @@ export const BlogServices = {
   createIntoDB,
   publishedBlog,
   getAllIntoDB,
+  getAllMyIntoDB,
   getAIntoDB,
   updateIntoDB,
   deleteAIntoDB,

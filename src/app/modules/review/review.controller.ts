@@ -26,6 +26,18 @@ const getAllReviews = catchAsync(async (req, res) => {
   });
 });
 
+const getAllMyReviews = catchAsync(async (req, res) => {
+  const result = await ReviewServices.getAllMyIntoDB(req.query, req.user);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'All my reviews retrieve successfully!',
+    meta: result.meta,
+    data: result.result,
+  });
+});
+
 const getAReview = catchAsync(async (req, res) => {
   const { id } = req.params;
   const review = await ReviewServices.getAIntoDB(id, req.user);
@@ -65,6 +77,7 @@ const deleteAReview = catchAsync(async (req, res) => {
 export const reviewControllers = {
   addReview,
   getAllReviews,
+  getAllMyReviews,
   getAReview,
   updateAReview,
   deleteAReview,

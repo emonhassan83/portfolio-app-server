@@ -7,10 +7,7 @@ import { TReview } from './review.interface';
 import { Review } from './review.model';
 import { ReviewSearchableFields } from './review.constant';
 
-const createIntoDB = async (
-  review: TReview,
-  userData: JwtPayload,
-) => {
+const createIntoDB = async (review: TReview, userData: JwtPayload) => {
   //* checking if the user is exist
   const user = await User.isUserExistsByUserEmail(userData?.email);
   if (!user) {
@@ -35,6 +32,31 @@ const createIntoDB = async (
 
 const getAllIntoDB = async (query: Record<string, unknown>) => {
   const reviewQuery = new QueryBuilder(Review.find(), query)
+    .search(ReviewSearchableFields)
+    .filter()
+    .sort()
+    .paginate()
+    .fields();
+
+  const result = await reviewQuery.modelQuery;
+  const meta = await reviewQuery.countTotal();
+  return {
+    meta,
+    result,
+  };
+};
+
+const getAllMyIntoDB = async (
+  query: Record<string, unknown>,
+  userData: JwtPayload,
+) => {
+  const user = await User.isUserExistsByUserEmail(userData.email);
+  if (!user) {
+    throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !');
+  }
+
+  const userId = user._id;
+  const reviewQuery = new QueryBuilder(Review.find({ user: userId }), query)
     .search(ReviewSearchableFields)
     .filter()
     .sort()
@@ -100,7 +122,7 @@ const deleteAIntoDB = async (id: string, userData: JwtPayload) => {
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !');
   }
-  
+
   //* checking if the user is already deleted
   const isDeleted = user?.isDeleted;
   if (isDeleted) {
@@ -128,6 +150,7 @@ const deleteAIntoDB = async (id: string, userData: JwtPayload) => {
 export const ReviewServices = {
   createIntoDB,
   getAllIntoDB,
+  getAllMyIntoDB,
   getAIntoDB,
   updateIntoDB,
   deleteAIntoDB,

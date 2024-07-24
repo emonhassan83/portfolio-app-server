@@ -23,11 +23,13 @@ router.put(
 
 router.get('/all-reviews', reviewControllers.getAllReviews);
 
+router.get('/my-reviews', auth(USER_ROLE.admin, USER_ROLE.user), reviewControllers.getAllMyReviews);
+
 router.get('/:id', reviewControllers.getAReview);
 
 router.delete(
   '/delete-review/:id',
-  auth(USER_ROLE.admin),
+  auth(USER_ROLE.admin, USER_ROLE.user),
   reviewControllers.deleteAReview,
 );
 
