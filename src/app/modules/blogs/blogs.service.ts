@@ -68,7 +68,7 @@ const publishedBlog = async (id: string, userData: JwtPayload) => {
 };
 
 const getAllIntoDB = async (query: Record<string, unknown>) => {
-  const blogQuery = new QueryBuilder(Blog.find(), query)
+  const blogQuery = new QueryBuilder(Blog.find().populate("author"), query)
     .search(BlogsSearchableFields)
     .filter()
     .sort()
@@ -93,7 +93,7 @@ const getAllMyIntoDB = async (
   }
 
   const userId = user._id;
-  const blogQuery = new QueryBuilder(Blog.find({ author: userId }), query)
+  const blogQuery = new QueryBuilder(Blog.find({ author: userId }).populate("author"), query)
     .search(BlogsSearchableFields)
     .filter()
     .sort()

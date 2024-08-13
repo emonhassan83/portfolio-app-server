@@ -1,23 +1,33 @@
 {
-   "name": "John Doe",
-   "email": "john@example.com",
+   "name": "Liam Hayes",
+   "email": "liam.hayes@example.com",
    "password": "user123",
    "contactNumber": "123-456-7890",
    "address": "123 Main St, Springfield, IL 62701, USA"
 }
-
 {
-   "name": "Alice Smith",
-   "email": "alice@example.com",
+   "name": "Noah Sullivan",
+   "email": "noah.sullivan@example.com",
    "password": "user123",
    "contactNumber": "234-567-8901",
    "address": "456 Elm St, Toronto, ON M4B 1B3, Canada"
 }
-
 {
-   "name": "Mia Wilson",
-   "email": "mia.wilson@example.com",
+   "name": "Emma Foster",
+   "email": "emma.foster@example.com",
    "password": "user123",
    "contactNumber": "345-678-9012",
    "address": "789 Maple St, Sydney, NSW 2000, Australia"
 }
+{
+   "name": "Jane Smith",
+   "email": "jane.smith@example.com",
+   "password": "user123",
+   "contactNumber": "453-678-9012",
+   "address": "789 Maple St, Sydney, NSW 2000, Australia"
+}
+
+https://imagizer.imageshack.com/img923/3239/CRK9u3.png
+https://imagizer.imageshack.com/img922/6113/vdC9dL.png
+https://imagizer.imageshack.com/img924/3114/j5PcgS.png
+https://imagizer.imageshack.com/img923/1736/ko8QiC.png

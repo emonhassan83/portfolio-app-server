@@ -31,7 +31,7 @@ const createIntoDB = async (review: TReview, userData: JwtPayload) => {
 };
 
 const getAllIntoDB = async (query: Record<string, unknown>) => {
-  const reviewQuery = new QueryBuilder(Review.find(), query)
+  const reviewQuery = new QueryBuilder(Review.find().populate('user'), query)
     .search(ReviewSearchableFields)
     .filter()
     .sort()
@@ -56,7 +56,7 @@ const getAllMyIntoDB = async (
   }
 
   const userId = user._id;
-  const reviewQuery = new QueryBuilder(Review.find({ user: userId }), query)
+  const reviewQuery = new QueryBuilder(Review.find({ user: userId }).populate('user'), query)
     .search(ReviewSearchableFields)
     .filter()
     .sort()

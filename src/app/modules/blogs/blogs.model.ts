@@ -8,7 +8,7 @@ const blogSchema = new Schema<TBlog>(
     description: { type: String, required: true },
     images: { type: String, required: true },
     tags: { type: String, required: true },
-    author: { type: Schema.Types.ObjectId, required: true },
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
     isPublished: { type: Boolean, default: false },
   },
   {
