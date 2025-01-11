@@ -26,8 +26,3 @@
    "contactNumber": "453-678-9012",
    "address": "789 Maple St, Sydney, NSW 2000, Australia"
 }
-
-https://imagizer.imageshack.com/img923/3239/CRK9u3.png
-https://imagizer.imageshack.com/img922/6113/vdC9dL.png
-https://imagizer.imageshack.com/img924/3114/j5PcgS.png
-https://imagizer.imageshack.com/img923/1736/ko8QiC.png
