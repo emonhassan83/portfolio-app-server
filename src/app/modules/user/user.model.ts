@@ -57,9 +57,9 @@ const userSchema = new Schema<TUser, UserModel>(
   },
 );
 
-//* pre save middleware / hooks
-userSchema.pre('save', async function (next) {
-  const user = this; //* this refers to document
+// * pre save middleware / hooks
+userSchema.pre('save', async function (this: TUser, next) {
+  const user = this; // * this refers to document
   user.password = await bcrypt.hash(
     user.password,
     Number(config.bcrypt_salt_rounds),
@@ -67,7 +67,7 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function (this: TUser, next) {
   const isUserExist = await User.findOne({
     email: this.email,
   });
@@ -82,16 +82,20 @@ userSchema.pre('save', async function (next) {
 });
 
 userSchema.statics.isUserExistsByUserEmail = async function (email: string) {
-  return await User.findOne({ email });
+  return await this.findOne({ email });
+};
+
+userSchema.statics.isUserExistsByEmail = async function (email: string) {
+  return await this.findOne({ email });
 };
 
 userSchema.statics.isUserExistsByUserId = async function (id: string) {
-  return await User.findOne({ _id: id });
+  return await this.findOne({ _id: id });
 };
 
 userSchema.statics.isPasswordMatched = async function (
-  plainTextPassword,
-  hashedPassword,
+  plainTextPassword: string,
+  hashedPassword: string,
 ) {
   return await bcrypt.compare(plainTextPassword, hashedPassword);
 };
