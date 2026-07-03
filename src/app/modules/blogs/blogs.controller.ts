@@ -50,7 +50,7 @@ const getAllMyBlogs = catchAsync(async (req, res) => {
 });
 
 const getABlog = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const blog = await BlogServices.getAIntoDB(id, req.user);
 
   sendResponse(res, {
@@ -62,7 +62,7 @@ const getABlog = catchAsync(async (req, res) => {
 });
 
 const updateABlog = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const blog = await BlogServices.updateIntoDB(id, req.body, req.user);
 
   sendResponse(res, {
@@ -74,7 +74,7 @@ const updateABlog = catchAsync(async (req, res) => {
 });
 
 const deleteABlog = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const blog = await BlogServices.deleteAIntoDB(id, req.user);
 
   sendResponse(res, {

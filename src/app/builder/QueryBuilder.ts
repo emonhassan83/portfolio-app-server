@@ -1,4 +1,5 @@
-import { FilterQuery, Query } from 'mongoose';
+import { Query } from 'mongoose';
+type FilterQuery<T> = any;
 
 class QueryBuilder<T> {
   public modelQuery: Query<T[], T>;

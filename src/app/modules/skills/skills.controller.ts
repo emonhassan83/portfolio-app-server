@@ -27,7 +27,7 @@ const getAllSkills = catchAsync(async (req, res) => {
 });
 
 const getASkill = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const project = await SkillServices.getAIntoDB(id, req.user);
 
   sendResponse(res, {
@@ -39,7 +39,7 @@ const getASkill = catchAsync(async (req, res) => {
 });
 
 const updateASkill = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const skill = await SkillServices.updateIntoDB(id, req.body, req.user);
 
   sendResponse(res, {
@@ -51,7 +51,7 @@ const updateASkill = catchAsync(async (req, res) => {
 });
 
 const deleteASkill = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const skill = await SkillServices.deleteAIntoDB(id, req.user);
 
   sendResponse(res, {

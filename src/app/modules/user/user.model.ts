@@ -58,16 +58,15 @@ const userSchema = new Schema<TUser, UserModel>(
 );
 
 // * pre save middleware / hooks
-userSchema.pre('save', async function (this: TUser, next) {
+userSchema.pre('save', async function () {
   const user = this; // * this refers to document
   user.password = await bcrypt.hash(
     user.password,
     Number(config.bcrypt_salt_rounds),
   );
-  next();
 });
 
-userSchema.pre('save', async function (this: TUser, next) {
+userSchema.pre('save', async function () {
   const isUserExist = await User.findOne({
     email: this.email,
   });
@@ -77,8 +76,6 @@ userSchema.pre('save', async function (this: TUser, next) {
       'This user is already exist, changes email if you create new user',
     );
   }
-
-  next();
 });
 
 userSchema.statics.isUserExistsByUserEmail = async function (email: string) {
