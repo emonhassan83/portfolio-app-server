@@ -39,7 +39,7 @@ const getAllMyReviews = catchAsync(async (req, res) => {
 });
 
 const getAReview = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const review = await ReviewServices.getAIntoDB(id, req.user);
 
   sendResponse(res, {
@@ -51,7 +51,7 @@ const getAReview = catchAsync(async (req, res) => {
 });
 
 const updateAReview = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const review = await ReviewServices.updateIntoDB(id, req.body, req.user);
 
   sendResponse(res, {
@@ -63,7 +63,7 @@ const updateAReview = catchAsync(async (req, res) => {
 });
 
 const deleteAReview = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const review = await ReviewServices.deleteAIntoDB(id, req.user);
 
   sendResponse(res, {

@@ -27,7 +27,7 @@ const getAllQualifications = catchAsync(async (req, res) => {
 });
 
 const getAQualification = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const qualification = await QualificationServices.getAIntoDB(id, req.user);
 
   sendResponse(res, {
@@ -39,7 +39,7 @@ const getAQualification = catchAsync(async (req, res) => {
 });
 
 const updateAQualification = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const qualification = await QualificationServices.updateIntoDB(id, req.body, req.user);
 
   sendResponse(res, {
@@ -51,7 +51,7 @@ const updateAQualification = catchAsync(async (req, res) => {
 });
 
 const deleteAQualification = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const qualification = await QualificationServices.deleteAIntoDB(id, req.user);
 
   sendResponse(res, {

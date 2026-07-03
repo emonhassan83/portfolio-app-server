@@ -61,7 +61,7 @@ const changeUserStatus= catchAsync(async (req, res) => {
 });
 
 const updateUserInfo = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const result = await UserService.updateUserInfoFromDB(id, req.body);
 
   sendResponse(res, {
@@ -84,7 +84,7 @@ const softDeleteAUser= catchAsync(async (req, res) => {
 });
 
 const deleteAUser = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   const result = await UserService.deleteAUserFromDB(id);
 
   sendResponse(res, {

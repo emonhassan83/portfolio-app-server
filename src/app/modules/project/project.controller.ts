@@ -27,7 +27,7 @@ const addProject = catchAsync(async (req, res) => {
   });
 
   const getAProject = catchAsync(async (req, res) => {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const project = await ProjectServices.getAIntoDB(id, req.user);
   
     sendResponse(res, {
@@ -39,7 +39,7 @@ const addProject = catchAsync(async (req, res) => {
   });
 
   const updateAProject = catchAsync(async (req, res) => {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const project = await ProjectServices.updateIntoDB(
       id,
       req.body,
@@ -55,7 +55,7 @@ const addProject = catchAsync(async (req, res) => {
   });
 
   const deleteAProject = catchAsync(async (req, res) => {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const project = await ProjectServices.deleteAIntoDB(id, req.user);
   
     sendResponse(res, {
